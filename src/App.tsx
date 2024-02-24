@@ -1,12 +1,10 @@
-import React from 'react';
-import Chatbot from './chatbot/Chatbot';
-
+import React from "react";
+import Calendar from "./routes/calendar/Calendar";
 
 function App() {
   return (
     <div className="App">
-      <Chatbot />
-      
+      <Calendar />
     </div>
   );
 }
