@@ -1,14 +1,17 @@
 const OpenAI = require('openai');
 
+
 let prompts = [
     { role: "system", content: "You are a study assistant, please provide support for users to learn"},
 ]
 
+const api_key = process.env.REACT_APP_API_KEY
+
 async function get_help(prompt) {
     console.log("into typescript")
     const openai = new OpenAI({
-        // apiKey: process.env.OPENAI_API_KEY,
-        apiKey: "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",
+        apiKey: api_key,
+        
         dangerouslyAllowBrowser: true
     })
 
@@ -19,7 +22,7 @@ async function get_help(prompt) {
   });
   const response_text = completion.choices[0].message.content
 
-  console.log(completion.choices[0]);
+
   
   prompts.push({role: "system", content: response_text})
 
