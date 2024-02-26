@@ -1,10 +1,11 @@
 import React from "react";
-import Calendar from "./routes/calendar/Calendar";
+import Day from "./routes/calendar/DayView";
+import { DateTime } from "luxon";
 
 function App() {
   return (
     <div className="App">
-      <Calendar />
+      <Day day={DateTime.local()} />
     </div>
   );
 }

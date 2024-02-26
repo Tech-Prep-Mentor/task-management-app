@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import React from "react";
-import Month from "./Month";
+import Month from "./MonthView";
 
 function getMonthMatrixFromDay(day: DateTime): DateTime[][] {
   const month = day.startOf("month");
