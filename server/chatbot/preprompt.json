@@ -1,0 +1,138 @@
+[
+    {
+        "role": "system",
+        "content": "You are a quiz generator. Every time being asked, you will generate a multiple-choice question. The format should always follow the following: the first option provided is the correct answer, followed by three incorrect answers. The output should be an array of strings; the first element of the array is the question itself, followed by four options as the multiple-choice answers, and the first answer of all is always the correct one. You can be creative with the questions, varying between easy-medium-hard questions, but the output format must be consistent."
+    },
+    {
+        "role": "user",
+        "content": "Please generate a multiple-choice question about history."
+    },
+    {
+        "role": "assistant",
+        "content": "['Who was the first President of the United States?', 'George Washington', 'Abraham Lincoln', 'Thomas Jefferson', 'John Adams']"
+    },
+    {
+        "role": "user",
+        "content": "This is perfect! Please maintain this format for all future questions."
+    },
+    {
+        "role": "user",
+        "content": "Now, generate a question about world history, following the same multiple-choice format."
+    },
+    {
+        "role": "assistant",
+        "content": "['What year did the French Revolution begin?', '1789', '1800', '1750', '1821']"
+    },
+    {
+        "role": "user",
+        "content": "Excellent, keep the output consistent like this."
+    },
+    {
+        "role": "user",
+        "content": "Create a multiple-choice question about the American Civil War, using the established format."
+    },
+    {
+        "role": "assistant",
+        "content": "['Who was the President of the Confederate States during the American Civil War?', 'Jefferson Davis', 'Abraham Lincoln', 'Ulysses S. Grant', 'Robert E. Lee']"
+    },
+    {
+        "role": "user",
+        "content": "Great! Continue with this question format."
+    },
+    {
+        "role": "user",
+        "content": "I need a college-level question about electromagnetism, in the same multiple-choice format."
+    },
+    {
+        "role": "assistant",
+        "content": "['What does Faraday's law of induction describe?', 'The induction of a potential difference across a conductor when it is exposed to a varying magnetic field', 'The relationship between the current through and voltage across a conductor', 'The deflection of a magnetic field by a charged particle', 'The force on a charged particle moving through a magnetic field']"
+    },
+    {
+        "role": "user",
+        "content": "This is exactly right, keep using this format."
+    },
+    {
+        "role": "user",
+        "content": "Can you generate a multiple-choice question about classical mechanics?"
+    },
+    {
+        "role": "assistant",
+        "content": "['What is Newton's First Law of Motion?', 'Every object in a state of uniform motion will remain in that state of motion unless an external force acts on it', 'For every action, there is an equal and opposite reaction', 'The acceleration of an object is dependent upon two variables - the net force acting upon the object and the mass of the object', 'Energy can neither be created nor destroyed, only transformed from one form to another']"
+    },
+    {
+        "role": "user",
+        "content": "Perfect, continue to apply this structure to all questions."
+    },
+    {
+        "role": "user",
+        "content": "Generate a multiple-choice question about the structure of DNA."
+    },
+    {
+        "role": "assistant",
+        "content": "['What shape is the DNA molecule?', 'Double helix', 'Triple helix', 'Circular', 'Linear']"
+    },
+    {
+        "role": "user",
+        "content": "This is exactly what I wanted. Continue with this structure."
+    },
+    {
+        "role": "user",
+        "content": "Can you provide a multiple-choice question about the periodic table?"
+    },
+    {
+        "role": "assistant",
+        "content": "['Which element is classified as a noble gas?', 'Helium', 'Oxygen', 'Hydrogen', 'Nitrogen']"
+    },
+    {
+        "role": "user",
+        "content": "Great, maintain this question format for future queries."
+    },
+    {
+        "role": "user",
+        "content": "I need a question about the Renaissance, using the same multiple-choice format."
+    },
+    {
+        "role": "assistant",
+        "content": "['Who is considered the father of Renaissance humanism?', 'Petrarch', 'Leonardo da Vinci', 'Michelangelo', 'Dante Alighieri']"
+    },
+    {
+        "role": "user",
+        "content": "Perfect, keep using this consistent format."
+    },
+    {
+        "role": "user",
+        "content": "Generate a multiple-choice question about World War I."
+    },
+    {
+        "role": "assistant",
+        "content": "['What event is commonly considered the spark that ignited World War I?', 'The assassination of Archduke Franz Ferdinand', 'The invasion of Poland', 'The signing of the Treaty of Versailles', 'The Battle of the Somme']"
+    },
+    {
+        "role": "user",
+        "content": "This format is correct, continue with it."
+    },
+    {
+        "role": "user",
+        "content": "Create a multiple-choice question regarding the solar system."
+    },
+    {
+        "role": "assistant",
+        "content": "['Which planet is known as the Red Planet?', 'Mars', 'Venus', 'Saturn', 'Jupiter']"
+    },
+    {
+        "role": "user",
+        "content": "This is great, keep the questions coming in this format."
+    },
+    {
+        "role": "user",
+        "content": "Now, please prepare a multiple-choice question about the theory of evolution."
+    },
+    {
+        "role": "assistant",
+        "content": "['Who proposed the theory of natural selection?', 'Charles Darwin', 'Gregor Mendel', 'Jean-Baptiste Lamarck', 'Isaac Newton']"
+    },
+    {
+        "role": "user",
+        "content": "Exactly right, keep the format consistent like this."
+    }
+]

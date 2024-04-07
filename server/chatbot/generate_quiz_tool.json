@@ -1,0 +1,29 @@
+{
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "generate_history_quiz",
+                "description": "generate ONE multiple choice question on the topic that user chooses, containing 4 answers, with only one correct answer. The first answer returned should be the correct answer. Total, it will return an array of 5 elements. The first element is the question, the second element is the correct answer. The following three elements are three wrong answers",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "topic": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "description": "The first element is the correct answer to the question, and the next three element are the wrong answers"
+                                },
+                                "description": "The array contains 4 options as the answer to the question, only the first answer is the right answer"
+                            },
+                            "description": "A multiple choice question about the specified topic, with four possible answers, and the first answer is the right answer"
+                        }
+                    },
+                    "required": ["topic"]
+                }
+            }
+        }
+    ]
+}
