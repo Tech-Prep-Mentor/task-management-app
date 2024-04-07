@@ -1,12 +1,13 @@
-import { DateTime } from "luxon";
-import React from "react";
-import Month from "./MonthView";
-import Week from "./WeekView";
+import { DateTime } from 'luxon';
+import React from 'react';
+import Month from './MonthView';
+import Week from './WeekView';
+import Day from './DayView';
 
 function getMonthMatrixFromDay(day: DateTime): DateTime[][] {
-  const month = day.startOf("month");
-  const firstDay = month.startOf("week");
-  const lastDay = month.endOf("month").endOf("week");
+  const month = day.startOf('month');
+  const firstDay = month.startOf('week');
+  const lastDay = month.endOf('month').endOf('week');
   const monthMatrix: DateTime[][] = [];
   let week: DateTime[] = [];
   for (let i = firstDay; i <= lastDay; i = i.plus({ days: 1 })) {
@@ -21,14 +22,14 @@ function getMonthMatrixFromDay(day: DateTime): DateTime[][] {
 }
 
 function getWeekFromDay(day: DateTime): DateTime[] {
-  const week = day.startOf("week");
+  const week = day.startOf('week');
   return Array.from({ length: 7 }).map((_, i) => week.plus({ days: i }));
 }
 
 enum CalendarDropdownOption {
-  Month = "Month",
-  Week = "Week",
-  Day = "Day",
+  Month = 'Month',
+  Week = 'Week',
+  Day = 'Day',
 }
 
 function Calendar() {
@@ -56,7 +57,7 @@ function Calendar() {
           <option value={CalendarDropdownOption.Day}>Day</option>
         </select>
       </div>
-      <Week week={getWeekFromDay(DateTime.local())} />
+      <Day day={today} />
     </div>
   );
 }
