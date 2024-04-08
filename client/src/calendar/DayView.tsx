@@ -1,17 +1,20 @@
-import { DateTime } from "luxon";
-import React, { useMemo } from "react";
-import TimeBar from "./TimeBar";
-import SingleDay from "./SingleDay";
+import { DateTime } from 'luxon';
+import React, { useMemo } from 'react';
+import TimeBar from './TimeBar';
+import SingleDay from './SingleDay';
 
 type DayProps = {
-  day: DateTime;
+  selectedDate: DateTime;
 };
 
 const HOUR_BLOCK_HEIGHT = 64;
 
-function Day({ day }: DayProps) {
+function Day({ selectedDate }: DayProps) {
   const now = useMemo(() => DateTime.local(), []);
-  const isToday = useMemo(() => now.hasSame(day, "day"), [now, day]);
+  const isToday = useMemo(
+    () => now.hasSame(selectedDate, 'day'),
+    [now, selectedDate],
+  );
 
   const currentTimeLineOffset = useMemo(() => {
     if (isToday) {
@@ -27,8 +30,8 @@ function Day({ day }: DayProps) {
   return (
     <div className="w-full">
       <div className="sticky top-0 z-20 flex h-16 flex-col items-center border-b-2 bg-white">
-        <div>{day.toFormat("EEE").toUpperCase()}</div>
-        <div>{day.toFormat("d")}</div>
+        <div>{selectedDate.toFormat('EEE').toUpperCase()}</div>
+        <div>{selectedDate.toFormat('d')}</div>
       </div>
       <div className="">
         <div className="flex flex-row">

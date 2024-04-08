@@ -1,5 +1,5 @@
-import React from "react";
-import { DateTime } from "luxon";
+import React from 'react';
+import { DateTime } from 'luxon';
 
 type CalendarProps = {
   month: DateTime[][];
@@ -15,31 +15,61 @@ function Day({ day }: DayProps) {
 
 function Month({ month }: CalendarProps) {
   const daysOfWeek = React.useMemo(
-    () => month[0].map((day) => day.toFormat("ccc").toUpperCase()),
+    () => month[0].map((day) => day.toFormat('ccc').toUpperCase()),
     [month],
   );
   return (
-    <div className="h-full flex-1">
-      <div className="grid grid-cols-7">
-        {daysOfWeek.map((day, i) => (
-          <div key={i} className="flex-1 text-center">
-            {day}
-          </div>
-        ))}
+    <div className="flex h-full w-full flex-col items-center bg-white">
+      <div className="w-full shrink-0 grow-0 basis-10">
+        <div className="grid h-full w-full grid-cols-7 items-center">
+          {daysOfWeek.map((day, i) => (
+            <div key={i} className="flex-1 text-center">
+              {day}
+            </div>
+          ))}
+        </div>
       </div>
-      <div
-        className={`grid flex-1 grid-cols-7 grid-rows-${month.length} h-full border-r-[1px]`}
-      >
-        {month.map((week, i) => (
-          <React.Fragment key={i}>
-            {week.map((day, j) => (
-              <Day key={j} day={day} />
-            ))}
-          </React.Fragment>
-        ))}
+      <div className="w-full flex-1 bg-blue-300">
+        <div
+          className={`grid h-full w-full grid-cols-7 grid-rows-${month.length} border-r-[1px]`}
+        >
+          {month.map((week, i) => (
+            <React.Fragment key={i}>
+              {week.map((day, j) => (
+                <Day key={j} day={day} />
+              ))}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-export default Month;
+function getMonthMatrixFromDay(day: DateTime): DateTime[][] {
+  const month = day.startOf('month');
+  const firstDay = month.startOf('week');
+  const lastDay = month.endOf('month').endOf('week');
+  const monthMatrix: DateTime[][] = [];
+  let week: DateTime[] = [];
+  for (let i = firstDay; i <= lastDay; i = i.plus({ days: 1 })) {
+    if (week.length === 7) {
+      monthMatrix.push(week);
+      week = [];
+    }
+    week.push(i);
+  }
+  monthMatrix.push(week);
+  return monthMatrix;
+}
+
+function MonthView({ selectedDate }: { selectedDate: DateTime }) {
+  const monthMatrix = React.useMemo(
+    () => getMonthMatrixFromDay(selectedDate),
+    [selectedDate],
+  );
+
+  return <Month month={monthMatrix} />;
+}
+
+export default MonthView;

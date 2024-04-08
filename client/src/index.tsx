@@ -1,34 +1,37 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Chatbot from "./chatbot/Chatbot";
-import LandingPage from "./LandingPage";
-import QuizGenerator from "./chatbot/QuizGenerator";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Chatbot from './chatbot/Chatbot';
+import LandingPage from './LandingPage';
+import QuizGenerator from './chatbot/QuizGenerator';
+import Calendar from './calendar/Calendar';
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <LandingPage />
+    path: '/',
+    element: <LandingPage />,
   },
   {
-    path: "/chatbot",
+    path: '/chatbot',
     element: <Chatbot />,
   },
   {
-    path: "/chatbot/quiz",
-    element: <QuizGenerator />
-  }
-
+    path: '/chatbot/quiz',
+    element: <QuizGenerator />,
+  },
+  {
+    path: 'calendar',
+    element: <Calendar />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

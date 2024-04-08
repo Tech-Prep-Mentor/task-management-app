@@ -4,28 +4,6 @@ import Month from './MonthView';
 import Week from './WeekView';
 import Day from './DayView';
 
-function getMonthMatrixFromDay(day: DateTime): DateTime[][] {
-  const month = day.startOf('month');
-  const firstDay = month.startOf('week');
-  const lastDay = month.endOf('month').endOf('week');
-  const monthMatrix: DateTime[][] = [];
-  let week: DateTime[] = [];
-  for (let i = firstDay; i <= lastDay; i = i.plus({ days: 1 })) {
-    if (week.length === 7) {
-      monthMatrix.push(week);
-      week = [];
-    }
-    week.push(i);
-  }
-  monthMatrix.push(week);
-  return monthMatrix;
-}
-
-function getWeekFromDay(day: DateTime): DateTime[] {
-  const week = day.startOf('week');
-  return Array.from({ length: 7 }).map((_, i) => week.plus({ days: i }));
-}
-
 enum CalendarDropdownOption {
   Month = 'Month',
   Week = 'Week',
@@ -33,19 +11,16 @@ enum CalendarDropdownOption {
 }
 
 function Calendar() {
-  const month = React.useMemo(
-    () => getMonthMatrixFromDay(DateTime.local()),
-    [],
-  );
-
   const today = React.useMemo(() => DateTime.local(), []);
+
+  const [selectedDate, setSelectedDate] = React.useState<DateTime>(today);
 
   const [calendarType, setCalendarType] =
     React.useState<CalendarDropdownOption>(CalendarDropdownOption.Month);
 
   return (
-    <div className="h-screen w-screen bg-red-200 p-10">
-      <div>
+    <div className="flex h-screen w-screen flex-col bg-red-200 p-0">
+      <div className="w-full shrink-0 grow-0 basis-20">
         <select
           value={calendarType}
           onChange={(e) =>
@@ -57,7 +32,17 @@ function Calendar() {
           <option value={CalendarDropdownOption.Day}>Day</option>
         </select>
       </div>
-      <Day day={today} />
+      <div className="w-5/6 flex-1 overflow-clip">
+        {calendarType === CalendarDropdownOption.Month && (
+          <Month selectedDate={selectedDate} />
+        )}
+        {calendarType === CalendarDropdownOption.Week && (
+          <Week selectedDate={selectedDate} />
+        )}
+        {calendarType === CalendarDropdownOption.Day && (
+          <Day selectedDate={selectedDate} />
+        )}
+      </div>
     </div>
   );
 }
