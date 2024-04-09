@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 function TimeBar() {
   return (
-    <div className="w-16 border-b-[1px] pr-1">
+    <div className="w-16 border-b-[1px] bg-white pr-1">
       <div className="h-8 bg-inherit"></div>
       {Array.from({ length: 23 }).map((_, i) => (
         <div key={i} className="flex h-16 items-center justify-end border-0">
