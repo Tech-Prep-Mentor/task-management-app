@@ -1,40 +1,57 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Chatbot from './chatbot/Chatbot';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from 'react-router-dom';
+import Chatbot from './pages/Chatbot';
 import LandingPage from './LandingPage';
-import QuizGenerator from './chatbot/QuizGenerator';
-import Calendar from './calendar/Calendar';
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <LandingPage />,
-  },
-  {
-    path: '/chatbot',
-    element: <Chatbot />,
-  },
-  {
-    path: '/chatbot/quiz',
-    element: <QuizGenerator />,
-  },
-  {
-    path: 'calendar',
-    element: <Calendar />,
-  },
-]);
+import QuizGenerator from './pages/QuizGenerator';
+import Login from './pages/Login';
+import Navbar from './components/Navbar';
+import Signup from './pages/Signup';
+import ChatPage from './pages/Chat';
+import { UserContextProvider } from './context/userContext';
+import { useUser } from './context/userContext';
+import AiTutor from './pages/AiTutor';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+const RequireAuth = () => {
+  const { user } = useUser();
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <Outlet />;
+};
+
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserContextProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route element={<RequireAuth />}>
+            {' '}
+            {/* Wrap protected routes */}
+            <Route path="/aitutor/chatbot/" element={<Chatbot />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/aitutor" element={<AiTutor />} />
+            <Route path="/aitutor/quiz" element={<QuizGenerator />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserContextProvider>
   </React.StrictMode>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
