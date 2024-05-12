@@ -9,8 +9,82 @@ type DayProps = {
   day: DateTime;
 };
 
+type InMonthEvent = {
+  start: DateTime;
+  end: DateTime;
+  title: string;
+};
+
+const sortedEvents: InMonthEvent[] = [
+  {
+    start: DateTime.local(2024, 4, 1, 10, 0),
+    end: DateTime.local(2024, 4, 1, 11, 0),
+    title: 'Meeting',
+  },
+  {
+    start: DateTime.local(2024, 4, 1, 12, 0),
+    end: DateTime.local(2024, 4, 1, 13, 45),
+    title: 'Lunch',
+  },
+  {
+    start: DateTime.local(2024, 4, 1, 14, 30),
+    end: DateTime.local(2024, 4, 1, 23, 0),
+    title: 'Workshop',
+  },
+  {
+    start: DateTime.local(2024, 4, 1, 8, 0),
+    end: DateTime.local(2024, 4, 1, 9, 0),
+    title: 'Breakfast',
+  },
+  {
+    start: DateTime.local(2024, 4, 1, 15, 0),
+    end: DateTime.local(2024, 4, 1, 16, 0),
+    title: 'Coffee',
+  },
+  {
+    start: DateTime.local(2024, 4, 1, 18, 0),
+    end: DateTime.local(2024, 4, 1, 19, 0),
+    title: 'Dinner',
+  },
+  {
+    start: DateTime.local(2024, 4, 1, 10, 0),
+    end: DateTime.local(2024, 4, 1, 11, 0),
+    title: "Hey I'm dead",
+  },
+  {
+    start: DateTime.local(2024, 4, 1, 12, 0),
+    end: DateTime.local(2024, 4, 1, 13, 45),
+    title: 'Lunch',
+  },
+];
+
 function Day({ day }: DayProps) {
-  return <div className="flex-1 border-b-[1px] border-l-[1px]">{day.day}</div>;
+  // TODO: Update to use event data from props
+  const events = sortedEvents.filter((event) =>
+    event.start.hasSame(day, 'day'),
+  );
+  // take first 4 events for display
+  const truncatedData = events.slice(0, 4);
+  const numberOfEventsNotDisplayed = events.length - truncatedData.length;
+  return (
+    <div className="flex-1 border-b-[1px] border-l-[1px]">
+      <div className="flex h-7 w-full items-center justify-center bg-blue-100">
+        {day.toFormat('d')}
+      </div>
+      <div className="flex-1 overflow-y-clip">
+        {truncatedData.map((event, i) => (
+          <div key={i} className="flex h-6 flex-col bg-red-300">
+            <div className="flex items-center justify-start">{event.title}</div>
+          </div>
+        ))}
+        {numberOfEventsNotDisplayed > 0 && (
+          <div className="h-7 bg-cyan-300">
+            <div className="flex items-center justify-start">{`${numberOfEventsNotDisplayed} more...`}</div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 function Month({ month }: CalendarProps) {
@@ -29,7 +103,7 @@ function Month({ month }: CalendarProps) {
           ))}
         </div>
       </div>
-      <div className="w-full flex-1 bg-blue-300">
+      <div className="w-full flex-1 bg-white">
         <div
           className={`grid h-full w-full grid-cols-7 grid-rows-${month.length} border-r-[1px]`}
         >
