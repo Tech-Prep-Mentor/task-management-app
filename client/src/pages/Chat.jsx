@@ -90,8 +90,7 @@ function ChatPage() {
 
 
   // Function to handle chat selection
-  const handleChatSelection = async (chatRoom, e) => {
-    e?.preventDefault(); 
+  const handleChatSelection = async (chatRoom) => {
     setCurrentChat({ id: chatRoom._id, name: chatRoom.name });
     fetchMessages(chatRoom._id);
   };
@@ -140,7 +139,7 @@ function ChatPage() {
       ) : (
         <ul className="chat-room-list">
           {chatRooms.map((chatRoom) => (
-            <li key={chatRoom._id} onClick={(e) => handleChatSelection(chatRoom, e)}
+            <li key={chatRoom._id} onClick={() => handleChatSelection(chatRoom)}
                 className={`chat-room-item ${currentChat.id === chatRoom._id ? 'active-room' : ''}`}>
               {chatRoom.name}
             </li>
@@ -167,7 +166,8 @@ function ChatPage() {
       
       {currentChat.id && ( 
       <>
-            <form className="message-form" onSubmit={sendMessage}>
+      <form className="message-form" onSubmit={sendMessage}>
+      <ImageUploader onImageUpload={handleImageUpload} />
             <input
               type="text"
               placeholder="Type a message..."

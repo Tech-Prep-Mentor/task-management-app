@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from '../context/userContext';
 
+
 const Navbar = () => {
     const [buttonState, setButtonState] = useState(false); // Toggle for mobile menu
     const { user, logout } = useUser();

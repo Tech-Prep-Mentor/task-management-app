@@ -52,9 +52,6 @@ function QuizGenerator(){
     }
 
 
-    
-
-
     return (
         <div className="my-4 ml-2">
             <h1 className="text-2xl font-bold mb-4">This is QuizGenerator</h1>
